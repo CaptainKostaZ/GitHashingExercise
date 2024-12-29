@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Make sure inputs 1 arguemnt the 4 digit one
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <4-digit integer>"
+    exit 1
+fi
+
+# Input
+input=$1
+
+# Generate SHA-256
+hash=$(echo -n $input | sha256sum | awk '{print $1}')
+
+# Ouput
+echo "Input: $input" > hash_output.txt
+echo "Hash: $hash" >> hash_output.txt
+echo "Hash saved in hash_output.txt"
